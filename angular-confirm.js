@@ -31,7 +31,7 @@ angular.module('angular-confirm', ['ui.bootstrap.modal'])
       cancel: 'Cancel'
     }
   })
-  .factory('$confirm', function ($uibModal, $confirmModalDefaults) {
+  .factory('$confirm', ['$uibModal', '$confirmModalDefaults', function ($uibModal, $confirmModalDefaults) {
     return function (data, settings) {
       var defaults = angular.copy($confirmModalDefaults);
       settings = angular.extend(defaults, (settings || {}));
@@ -50,7 +50,7 @@ angular.module('angular-confirm', ['ui.bootstrap.modal'])
 
       return $uibModal.open(settings).result;
     };
-  })
+  }])
   .directive('confirm', function ($confirm) {
     return {
       priority: 1,
